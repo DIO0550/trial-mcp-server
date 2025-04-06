@@ -1,0 +1,25 @@
+FROM ubuntu:22.04
+
+# タイムゾーンの設定を避けるための環境変数
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Tokyo
+
+# 必要最小限のパッケージのインストール
+RUN apt-get update && apt-get install -y \
+    curl \
+    git 
+
+# Node.jsのインストール
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
+
+
+# 一般ユーザーの作成
+RUN useradd -m -s /bin/bash node
+
+# ユーザーを切り替え
+USER node
+
+# 作業ディレクトリの設定
+WORKDIR /home/developer/app

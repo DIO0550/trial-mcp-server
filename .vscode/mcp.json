@@ -1,0 +1,11 @@
+{
+    "servers": {
+        "my-mcp-server-6a282076": {
+            "type": "stdio",
+            "command": "node",
+            "args": [
+                "/workspaces/trial-mcp-server/server/build/index.js"
+            ],
+        }
+    }
+}
